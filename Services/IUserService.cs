@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
+using System.Xml;
 namespace MainAPI.Services
 {
     public interface IUserService
@@ -12,6 +9,6 @@ namespace MainAPI.Services
         public void AddUser(User user);
         public void DeleteUser(int id);
         public void PutUser(User user);
-        
+        public string GetXml(int id);
     }
 }

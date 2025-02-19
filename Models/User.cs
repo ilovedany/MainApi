@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.SignalR;
-
-using System.Text.Json.Serialization;
+using System.Xml;
 
 namespace MainAPI
 {
@@ -19,7 +13,7 @@ namespace MainAPI
         public int Age{get; set;}
 
         public string Email{get; set;}
-        
+        public string XamlData{get; set;}
     }
 }
 
@@ -30,6 +24,10 @@ namespace MainAPI
         Age INT,
         Email NVARCHAR(50),
     );
+
+
+    ALTER TABLE users
+    ADD COLUMN XamlData xml;
     */
     
     

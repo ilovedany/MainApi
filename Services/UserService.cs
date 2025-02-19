@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Npgsql;
 using Dapper;
+using System.Xml;
 namespace MainAPI.Services
 {
     public class UserService : IUserService
@@ -20,7 +21,7 @@ namespace MainAPI.Services
         {
             using (var db = new NpgsqlConnection(_connectionString))
             {
-                var users = await db.QueryAsync<User>("SELECT Id, Name, Surname, Age, Email FROM Users");
+                var users = await db.QueryAsync<User>("SELECT Id, Name, Surname, Age, Email, XamlData FROM Users");
                 return users.ToList();
             }
         }
@@ -44,6 +45,13 @@ namespace MainAPI.Services
             using(var db = new NpgsqlConnection(_connectionString)){
                 var sqlQuery = "UPDATE Users SET Name = @Name, Surname = @Surname, Age = @Age, Email = @Email WHERE Id = @Id";
                 db.Execute(sqlQuery,user);
+            }
+        }
+        public string GetXml(int id){
+            using(var db = new NpgsqlConnection(_connectionString)){
+                var sqlQuery = db.Query<string>("SELECT GetXmlToId(@id)", new { id }).FirstOrDefault();
+        
+                return sqlQuery;
             }
         }
     }

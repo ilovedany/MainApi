@@ -15,5 +15,7 @@ namespace MainAPI.Services
         public void PutRank(SpecialistRank specialistRank);
         public IEnumerable<SpecialistRank> GetRankToID(int id);
 
+
+
     }
 }
